@@ -26,6 +26,7 @@
 #include <gdb_stub.h>
 #endif
 
+
 void rt_init_thread_entry(void* parameter)
 {
     /* GDB STUB */
@@ -33,7 +34,7 @@ void rt_init_thread_entry(void* parameter)
     gdb_set_device("uart6");
     gdb_start();
 #endif
-
+    led_init();
 
 #ifdef RT_USING_FINSH
     finsh_system_init();

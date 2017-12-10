@@ -164,6 +164,7 @@ void rt_hw_board_init()
     rt_components_board_init();
 #else
     stm32_hw_usart_init();
+    led_hw_init();
 #endif
     
 #ifdef RT_USING_EXT_SDRAM

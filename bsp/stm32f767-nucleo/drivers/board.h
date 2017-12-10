@@ -16,6 +16,7 @@
 
 #include <stm32f7xx.h>
 #include "stm32f7xx_hal.h"
+#include "drv_led.h"
 
 // <<< Use Configuration Wizard in Context Menu >>>
 /* board configuration */
@@ -41,8 +42,8 @@ extern int __bss_end;
 
 // <o> Internal SRAM memory size[Kbytes] <8-64>
 //  <i>Default: 64
-#define STM32_SRAM_SIZE   (256 * 1024)
-#define HEAP_END          (0x20010000 + STM32_SRAM_SIZE)
+#define STM32_SRAM_SIZE   (512 * 1024)
+#define HEAP_END          (0x20000000 + STM32_SRAM_SIZE)
 
 void rt_hw_board_init(void);
 

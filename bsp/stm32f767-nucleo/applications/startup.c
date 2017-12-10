@@ -27,16 +27,6 @@
 
 extern int  rt_application_init(void);
 
-#ifdef __CC_ARM
-extern int Image$$RW_IRAM1$$ZI$$Limit;
-#define STM32_SRAM_BEGIN    (&Image$$RW_IRAM1$$ZI$$Limit)
-#elif __ICCARM__
-#pragma section="HEAP"
-#define STM32_SRAM_BEGIN    (__segment_end("HEAP"))
-#else
-extern int __bss_end;
-#define STM32_SRAM_BEGIN    (&__bss_end)
-#endif
 
 /*******************************************************************************
 * Function Name  : assert_failed
@@ -75,12 +65,6 @@ void rtthread_startup(void)
 
     /* init timer system */
     rt_system_timer_init();
-
-#ifdef RT_USING_EXT_SDRAM
-   // rt_system_heap_init((void*)EXT_SDRAM_BEGIN, (void*)EXT_SDRAM_END);
-#else
-    //rt_system_heap_init((void*)HEAP_BEGIN, (void*)HEAP_END);
-#endif
 
     /* init scheduler system */
     rt_system_scheduler_init();
