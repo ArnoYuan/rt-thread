@@ -124,6 +124,7 @@ def PrepareBuilding(env, root_directory, has_libcpu=False, remove_components = [
 
     Env = env
     Rtt_Root = os.path.abspath(root_directory)
+    sys.path = sys.path + [os.path.join(Rtt_Root, 'tools')]
 
     # add compability with Keil MDK 4.6 which changes the directory of armcc.exe
     if rtconfig.PLATFORM == 'armcc':
@@ -139,6 +140,10 @@ def PrepareBuilding(env, root_directory, has_libcpu=False, remove_components = [
         env['LIBLINKPREFIX'] = ''
         env['LIBLINKSUFFIX']   = '.lib'
         env['LIBDIRPREFIX'] = '--userlibpath '
+
+    if rtconfig.PLATFORM == 'gcc':
+        if str(env['LINKFLAGS']).find('nano.specs'):
+            env.AppendUnique(CPPDEFINES = ['_REENT_SMALL'])
 
     # patch for win32 spawn
     if env['PLATFORM'] == 'win32':
@@ -284,6 +289,16 @@ def PrepareBuilding(env, root_directory, has_libcpu=False, remove_components = [
             from menuconfig import menuconfig
             menuconfig(Rtt_Root)
             exit(0)
+
+    AddOption('--useconfig',
+                dest = 'useconfig',
+                type='string',
+                help = 'make rtconfig.h from config file.')
+    configfn = GetOption('useconfig')
+    if configfn:
+        from menuconfig import mk_rtconfig
+        mk_rtconfig(configfn)
+        exit(0)
 
     # add comstr option
     AddOption('--verbose',
@@ -729,11 +744,20 @@ def SrcRemove(src, remove):
 
     for item in src:
         if type(item) == type('str'):
-            if os.path.basename(item) in remove:
+            item_str = item
+        else:
+            item_str = item.rstr()
+
+        if os.path.isabs(item_str):
+            item_str = os.path.relpath(item_str, GetCurrentDir())
+
+        if type(remove) == type('str'):
+            if item_str == remove:
                 src.remove(item)
         else:
-            if os.path.basename(item.rstr()) in remove:
-                src.remove(item)
+            for remove_item in remove:
+                if item_str == str(remove_item):
+                    src.remove(item)
 
 def GetVersion():
     import SCons.cpp

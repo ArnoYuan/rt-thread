@@ -27,6 +27,7 @@
 #include <board.h>
 
 extern int platform_init(void);
+extern int platform_post_init(void);
 extern int mnt_init(void);
 
 void rt_init_thread_entry(void *parameter)
@@ -35,6 +36,15 @@ void rt_init_thread_entry(void *parameter)
 
     platform_init();
     mnt_init();
+
+	platform_post_init();
+
+#if defined(PKG_USING_GUIENGINE) && defined(GUIENGINE_USING_DEMO)
+    {
+        extern int rt_gui_demo_init(void);
+        rt_gui_demo_init();
+    }
+#endif
 }
 
 int rt_application_init()

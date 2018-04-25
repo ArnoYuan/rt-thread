@@ -3,7 +3,7 @@ import os
 # toolchains options
 ARCH='arm'
 CPU='cortex-m4'
-CROSS_TOOL='gcc'
+CROSS_TOOL='keil'
 
 if os.getenv('RTT_CC'):
     CROSS_TOOL = os.getenv('RTT_CC')
@@ -13,18 +13,17 @@ if os.getenv('RTT_ROOT'):
 # cross_tool provides the cross compiler
 # EXEC_PATH is the compiler execute path, for example, CodeSourcery, Keil MDK, IAR
 if  CROSS_TOOL == 'gcc':
-    print '================ERROR============================'
-    print 'Not support gcc yet!'
-    print '================================================='
+    print('================ERROR============================')
+    print('Not support gcc yet!')
+    print('=================================================')
     PLATFORM    = 'gcc'
-    exit(0)
 elif CROSS_TOOL == 'keil':
     PLATFORM 	= 'armcc'
     EXEC_PATH 	= r'C:/Keil_v5'
 elif CROSS_TOOL == 'iar':
     PLATFORM 	= 'iar'
     EXEC_PATH 	= r'C:/Program Files (x86)/IAR Systems/Embedded Workbench 8.0'
-    
+
 if os.getenv('RTT_EXEC_PATH'):
 	EXEC_PATH = os.getenv('RTT_EXEC_PATH')
 
