@@ -17,6 +17,7 @@
 /* SECTION: RT_DEBUG */
 /* Thread Debug */
 #define RT_DEBUG
+#define RT_DEBUG_COLOR
 #define RT_USING_OVERFLOW_CHECK
 
 /* Using Hook */
@@ -61,6 +62,7 @@
 #define RT_USING_DEVICE_IPC
 /* Using serial framework */
 #define RT_USING_SERIAL
+#define RT_SERIAL_USING_DMA
 
 #define RT_USING_UART1
 #define RT_USING_UART2
