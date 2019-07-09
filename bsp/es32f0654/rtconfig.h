@@ -169,6 +169,21 @@
 /* I2C Drivers */
 
 
+/* PWM Drivers */
+
+
+/* HWtimer Drivers */
+
+
+/* RTC Drivers */
+
+
+/* PM Drivers */
+
+
+/* ADC Drivers */
+
+
 /* Onboard Peripheral Drivers */
 
 

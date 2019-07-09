@@ -13,9 +13,9 @@ ES-PDS-ES32F0654 是东软载波微电子官方推出的一款基于 ARM Cortex-
 
 开发板外观如下图所示：
 
-ES-PDS-ES32F0654-V1.0
+ES-PDS-ES32F0654-V1.1
 
-![ES32F0654](figures/ES-PDS-ES32F0654-V1.0.jpg)
+![ES32F0654](figures/ES-PDS-ES32F0654-V1.1.jpg)
 
 该开发板常用 **板载资源** 如下：
 
@@ -34,16 +34,21 @@ ES-PDS-ES32F0654-V1.0
 
 | **板载外设**      | **支持情况** | **备注**                             |
 | :---------------- | :----------: | :------------------------------------|
-| SPI FLASH         |     支持     |                                      |
-
+| SPI FLASH         |     支持     | SPI0                                 |
 | **片上外设**      | **支持情况** | **备注**                             |
-| :---------------- | :----------: | :------------------------------------|
 | GPIO              |     支持     | 54 GPIOs                             |
 | UART              |     支持     | UART0/1/2/3                          |
 | SPI               |     支持     | SPI0/1                               |
 | I2C               |     支持     | I2C0/1                               |
+| PWM               |     支持     | PWM0/1/2/3                           |
+| TIMER             |     支持     | TIMER0/1/2/3                         |
+| RTC               |     支持     | RTC                                  |
+| PM                |     支持     | Power Management                     |
+| ADC               |     支持     | ADC0                                 |
 
-| **扩展模块**      | **支持情况** | **备注**                             |
+### 1.2  注意事项
+
+- 本BSP中，UART2和TIMER1不能同时使用，UART3和TIMER2不能同时使用
 
 更多详细信息请咨询[上海东软载波微电子技术支持](http://www.essemi.com/)
 
@@ -57,7 +62,7 @@ ES-PDS-ES32F0654-V1.0
 
 使用ESlinkⅡ(mini)连接开发板如下图所示：
 
-ESLinkⅡ(mini) + ES-PDS-ES32F0654-V1.0
+ESLinkⅡ(mini) + ES-PDS-ES32F0654-V1.1
 
 ![ESLinkII](figures/ESLinkII-mini.jpg)
 
